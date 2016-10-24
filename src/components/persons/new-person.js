@@ -12,7 +12,8 @@ class NewPerson extends Component {
 
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			errors: []
 		};
 
 		this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -29,9 +30,27 @@ class NewPerson extends Component {
 	}
 
 	handleSubmitPerson(e) {
-		e.preventDefault();
+		e.preventDefault(); 																			// preventing page from reloading
+		let username = this.state.username, password = this.state.password; // variables definition
+		const errors = [];								// definition of empty array for future errors collecting
 
-		this.props.createPerson(this.state.username, this.state.password);
+		// username validation
+		username
+			? (
+				!(/^([a-zA-Z0-9 _-]+)$/).test(username) && errors.push('only characters and numbers'),
+				username.length < 4 && errors.push('minimum 4 characters for username')
+				)
+			: errors.push('username field is required');
+
+		// password validation
+		password
+			? password.length < 6 && errors.push('minimum 6 symbols for password')
+			: errors.push('password is required');
+
+		// calls action creator to add a new record to db or shows errors list
+		errors.length < 1
+			? this.props.createPerson(username, password)
+			:	this.setState({ errors: errors });
 	}
 
 	render() {
@@ -45,8 +64,8 @@ class NewPerson extends Component {
 						type="text"
 						placeholder="Username"
 						className="form-control"/>
-					<label>Password</label>
 
+					<label>Password</label>
 					<input
 						onChange={this.handleChangePassword}
 						value={this.state.password}
@@ -58,6 +77,9 @@ class NewPerson extends Component {
 						type="submit"
 						className="btn btn-primary">Sign Up</button>
 				</form>
+				<ul>
+					{ this.state.errors.map(error => <li key={error}>{error}</li> )}
+				</ul>
 			</div>
 		);
 	}
