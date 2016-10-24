@@ -8,6 +8,9 @@ import { Router, browserHistory } from 'react-router';
 // Components import via routing
 import routes from './routes';
 
+// Styles import
+import '../styles/index.scss'
+
 
 // Reducers import
 import reducers from './reducers';
