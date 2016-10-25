@@ -1,5 +1,5 @@
 // Initial states for reducers
 export const INITIAL_STATE = {
-	all_persons: [],
+	single_person: {},
 	errors: []
 };

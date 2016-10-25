@@ -8,7 +8,8 @@ import { INITIAL_STATE } from './initial_state';
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
 		case CREATE_PERSON:
-			return { ...state, all_persons: action.payload };
+			console.log(action.type);
+			return { ...state, single_person: action.payload };
 		case CREATE_PERSON_ERRORS:
 			return { ...state, errors: action.payload };
 		default:

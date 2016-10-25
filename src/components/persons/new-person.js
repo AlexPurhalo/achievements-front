@@ -83,6 +83,7 @@ class NewPerson extends Component {
 					{ this.state.errors.map(error => <li key={error}>{error}</li> )}
 					{ this.props.errors && this.props.errors.map((error => <li key={error}>{error}</li> ))}
 				</ul>
+
 			</div>
 		);
 	}
