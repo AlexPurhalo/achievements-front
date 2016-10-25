@@ -1,9 +1,12 @@
 // Node modules import
 import { combineReducers } from 'redux';
 
+// Reducers import
+import personsReducer from './persons';
+
 // State holding in combine reducers
 const rootReducer = combineReducers({
-	state: (state = {}) => state
+	persons: personsReducer
 });
 
 export default rootReducer;

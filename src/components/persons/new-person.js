@@ -42,6 +42,8 @@ class NewPerson extends Component {
 				)
 			: errors.push('username field is required');
 
+
+
 		// password validation
 		password
 			? password.length < 6 && errors.push('minimum 6 symbols for password')
@@ -79,10 +81,14 @@ class NewPerson extends Component {
 				</form>
 				<ul>
 					{ this.state.errors.map(error => <li key={error}>{error}</li> )}
+					{ this.props.errors && this.props.errors.map((error => <li key={error}>{error}</li> ))}
 				</ul>
 			</div>
 		);
 	}
 }
 
-export default connect(null, { createPerson })(NewPerson)
+function mapStateToProps(state) {
+	return { errors: state.persons.errors }
+}
+export default connect(mapStateToProps, { createPerson })(NewPerson)
