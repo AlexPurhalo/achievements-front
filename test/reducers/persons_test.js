@@ -3,12 +3,12 @@ import { expect } from '../test_helper';
 
 // Reducers and Action Types import
 import personsReducer from '../../src/reducers/persons';
-import { CREATE_PERSON, CREATE_PERSON_ERRORS } from '../../src/actions/types';
+import { CREATE_PERSON, CREATE_PERSON_ERRORS } from '../../src/constants/persons';
 
 // Test situations
 describe('Persons Reducer', () => {
 	it('handles action with unknown type', () => {
-		expect(personsReducer(undefined, {})).to.eql({ single_person: {}, errors: [] } );
+		expect(personsReducer(undefined, {})).to.eql({ single_person: {}, all_persons: [], errors: [] } );
 	});
 
 	it('handles action of type CREATE_PERSON', () => {

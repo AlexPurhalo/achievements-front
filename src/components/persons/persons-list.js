@@ -1,7 +1,14 @@
 // Node modules import
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Persons extends Component {
+import { fetchAllPersons } from '../../actions/persons';
+
+class Persons extends Component {
+	componentWillMount() {
+		this.props.fetchAllPersons();
+	}
+
 	render() {
 		return (
 			<div className="persons-list">
@@ -16,3 +23,5 @@ export default class Persons extends Component {
 		);
 	}
 }
+
+export default connect(null, { fetchAllPersons })(Persons);
