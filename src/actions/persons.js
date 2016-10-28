@@ -1,6 +1,5 @@
 // Node modules import
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
 // API service address
 const ROOT_URL = 'http://localhost:5000';
@@ -15,15 +14,14 @@ export function createPerson(username, password) {
 			enc_password: password
 		};
 
-		axios.post(`${ROOT_URL}/users`, data)
-			.then(response => {
+		return axios.post(`${ROOT_URL}/users`, data)
+			.then(function(response) {
+				console.log(response);
 				dispatch({
 					type: CREATE_PERSON,
 					payload: response.data
 				});
-				browserHistory.push('/');
-			})
-			.catch(request => dispatch(createPersonErrors(request.response.data.errors)));
+			}).catch(request => dispatch(createPersonErrors(request.response.data.errors)));
 	}
 }
 
@@ -42,7 +40,9 @@ export function fetchAllPersons() {
 				dispatch({
 					type: FETCH_ALL_PERSONS,
 					payload: response.data
-				})
+				});
 			})
 	}
 }
+
+
