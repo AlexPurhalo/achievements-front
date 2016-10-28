@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { createPerson, fetchAllPersons } from '../../src/actions/persons';
+import { addFlashMessage } from '../../src/actions/flash-messages'
 import nock from 'nock'
 import { expect } from '../test_helper';
 

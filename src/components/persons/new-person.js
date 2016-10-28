@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions import
 import { createPerson } from '../../actions/persons';
+import { addFlashMessage } from '../../actions/flash-messages';
 
 // Shows form and calls action creators to add a new user
 class NewPerson extends Component {
@@ -52,6 +53,7 @@ class NewPerson extends Component {
 		// calls action creator to add a new record to db or shows errors list
 		errors.length < 1
 			? this.props.createPerson(username, password)
+					.then(this.props.addFlashMessage('success', 'Account has been created'))
 			:	this.setState({ errors: errors });
 	}
 
@@ -92,4 +94,4 @@ class NewPerson extends Component {
 function mapStateToProps(state) {
 	return { errors: state.persons.errors }
 }
-export default connect(mapStateToProps, { createPerson })(NewPerson)
+export default connect(mapStateToProps, { createPerson, addFlashMessage })(NewPerson)
