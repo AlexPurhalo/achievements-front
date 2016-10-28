@@ -1,12 +1,8 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { createPerson, fetchAllPersons } from '../../src/actions/persons';
-import { addFlashMessage } from '../../src/actions/flash-messages'
-import nock from 'nock'
-import { expect } from '../test_helper';
+// Import of helpers and configuration from test helper file
+import { nock, expect, mockStore } from '../test_helper';
 
-const middlewares = [ thunk ];
-const mockStore = configureMockStore(middlewares);
+// Actions import
+import { createPerson, fetchAllPersons } from '../../src/actions/persons';
 
 describe('Persons async actions', () => {
 	// cleans data from mockStore after test processing
@@ -16,7 +12,7 @@ describe('Persons async actions', () => {
 
 	const ROOT_URL = 'http://localhost:5000'; // API url for future data manipulation through requests
 
-	it('GET request to fetch users', () => {
+	it('GET request to fetch the users', () => {
 		// objects from array in response
 		const user1 = { id: 1, username: "Alex", enc_password: "7sFuEP4tcw0=", access_token:"-agp0jdI1HOtorxBstayYg" },
 					user2 = { id: 2, username: "Born", enc_password: "5sJmE/Yuew4O", access_token:"sKgugOyO2Vzs84QIadovwQ" };
@@ -46,7 +42,7 @@ describe('Persons async actions', () => {
 			.post('/users', inputData)
 			.reply(201, [outputData]);
 
-		const expectedOutput = [{ type: 'create_person', payload: [outputData]}];
+		const expectedOutput = [{ type: 'create_person_success', payload: [outputData]}];
 
 		const store = mockStore([]);
 

@@ -5,29 +5,36 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:5000';
 
 // Actions types import
-import { CREATE_PERSON, CREATE_PERSON_ERRORS, FETCH_ALL_PERSONS } from '../constants/persons';
+import {
+	CREATE_PERSON_SUCCESS,
+	CREATE_PERSON_FAILURE,
+	FETCH_ALL_PERSONS
+} from '../constants/persons';
 
+// Calls function that creates person or fetches error message
 export function createPerson(username, password) {
 	return function(dispatch) {
-		const data = {
-			username: username,
-			enc_password: password
-		};
+		const data = { username: username, enc_password: password };
 
 		return axios.post(`${ROOT_URL}/users`, data)
-			.then(function(response) {
-				console.log(response);
-				dispatch({
-					type: CREATE_PERSON,
-					payload: response.data
-				});
-			}).catch(request => dispatch(createPersonErrors(request.response.data.errors)));
+			.then(res => dispatch(createPersonSuccess(res)))
+			.catch(req => dispatch(createPersonErrors(req.response.data.errors)));
 	}
 }
 
-export function createPersonErrors(errors) {
+// Creates person
+function createPersonSuccess(res) {
+	console.log(res);
 	return {
-		type: CREATE_PERSON_ERRORS,
+		type: CREATE_PERSON_SUCCESS,
+		payload: res.data
+	}
+}
+
+// Shows errors that prevent record from saving in db
+function createPersonErrors(errors) {
+	return {
+		type: CREATE_PERSON_FAILURE,
 		payload: errors
 	}
 }

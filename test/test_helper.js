@@ -8,6 +8,9 @@ import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import nock from 'nock'
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
@@ -33,4 +36,6 @@ $.fn.simulate = function(eventName, value) {
 	TestUtils.Simulate[eventName](this[0]);
 };
 
-export {renderComponent, expect};
+const middlewares = [ thunk ], mockStore = configureMockStore(middlewares);
+
+export {renderComponent, expect, nock, mockStore};
