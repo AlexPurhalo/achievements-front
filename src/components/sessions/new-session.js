@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 // Actions import
-import { createPerson } from '../../actions/persons';
+import { createSession } from '../../actions/sessions';
 import { addFlashMessage } from '../../actions/flash-messages';
 
-// Shows form and calls action creators to add a new user
-class NewPerson extends Component {
+// Allows to create a new session
+class NewSession extends Component {
 	constructor() {
 		super();
 
@@ -32,43 +32,32 @@ class NewPerson extends Component {
 	}
 
 	handleSubmitPerson(e) {
-			e.preventDefault(); 																			// preventing page from reloading
+		e.preventDefault();
 		let username = this.state.username, password = this.state.password; // variables definition
 		const errors = [];								// definition of empty array for future errors collecting
 
-		// username validation
-		username
-			? (
-				!(/^([a-zA-Z0-9 _-]+)$/).test(username) && errors.push('only characters and numbers'),
-				username.length < 4 && errors.push('minimum 4 characters for username')
-				)
-			: errors.push('username field is required');
+		!username && errors.push('enter a username please');
+		!password && errors.push('enter a password please');
 
-
-
-		// password validation
-		password
-			? password.length < 6 && errors.push('minimum 6 symbols for password')
-			: errors.push('password is required');
-
-		// calls action creator to add a new record to db or shows errors list
+		// receives javascript web token of user indicated by passed username
 		errors.length < 1
-			? this.props.createPerson(username, password)
+			? this.props.createSession(username, password)
 					.then(action => {
-						action.type === "create_person_success" && (
-							// adds flash message says that record wsa created
-							this.props.addFlashMessage('success', 'Account has been created'),
-							// redirects to root page after then record was created
+						action.type === "create_session_success" && (
+							this.props.addFlashMessage('success', 'You have signed in successfully'),
 							browserHistory.push('/')
 						);
+
+						action.type === 'create_session_failure' && this.setState({ errors: action.payload });
 					})
-			// fill in global errors variable by passing occurred errors
-			:	this.setState({ errors: errors });
+			: this.setState({ errors: errors });
 	}
 
 	render() {
+		console.log(this.state.errors);
 		return (
-			<div className="new-person-page">
+			<div className="new-session-page">
+				<h1>Sign In</h1>
 				<form onSubmit={this.handleSubmitPerson}>
 					<label>Username</label>
 					<input
@@ -88,19 +77,14 @@ class NewPerson extends Component {
 
 					<button
 						type="submit"
-						className="btn btn-primary">Sign Up</button>
+						className="btn btn-primary">Sign In</button>
 				</form>
 				<ul>
-					{ this.state.errors.map(error => <li key={error}>{error}</li> )}
-					{ this.props.errors && this.props.errors.map((error => <li key={error}>{error}</li> ))}
+					{ this.state.errors.map(error => <li key={error}>{error}</li>) }
 				</ul>
-
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	return { errors: state.persons.errors }
-}
-export default connect(mapStateToProps, { createPerson, addFlashMessage })(NewPerson)
+export default connect(null, { createSession, addFlashMessage })(NewSession);
