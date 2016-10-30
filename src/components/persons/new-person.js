@@ -1,6 +1,7 @@
 // Node modules import
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 // Actions import
 import { createPerson } from '../../actions/persons';
@@ -53,7 +54,15 @@ class NewPerson extends Component {
 		// calls action creator to add a new record to db or shows errors list
 		errors.length < 1
 			? this.props.createPerson(username, password)
-					.then(this.props.addFlashMessage('success', 'Account has been created'))
+					.then(action => {
+						action.type === "create_person_success" && (
+							// adds flash message says that record wsa created
+							this.props.addFlashMessage('success', 'Account has been created'),
+							// redirects to root page after then record was created
+							browserHistory.push('/')
+						);
+					})
+			// fill in global errors variable by passing occurred errors
 			:	this.setState({ errors: errors });
 	}
 
