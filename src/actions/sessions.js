@@ -5,7 +5,7 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:5000';
 
 // Actions types import
-import { CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE } from '../constants/sessions';
+import { CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DESTROY_SESSION } from '../constants/sessions';
 
 export function createSession(username, password) {
 	return function(dispatch) {
@@ -31,4 +31,8 @@ function createSessionFailure(data) {
 		type: CREATE_SESSION_FAILURE,
 		payload: data
 	}
+}
+
+export function destroySession() {
+	return { type: DESTROY_SESSION }
 }

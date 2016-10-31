@@ -1,6 +1,10 @@
 // Node modules import
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+
+// Actions import
+import { destroySession } from '../actions/sessions';
 
 class Header extends Component {
 	navbarForGuest() {
@@ -16,9 +20,16 @@ class Header extends Component {
 		return (
 			<ul>
 				<li>Account</li>
-				<li>Sign Out</li>
+				<li>
+					<button onClick={this.onSignOutClick.bind(this)}>Sign Out</button>
+				</li>
 			</ul>
 		);
+	}
+
+	onSignOutClick() {
+		this.props.destroySession()
+			.then(browserHistory.push('/'), localStorage.removeItem('token'));
 	}
 
 	render() {
@@ -35,4 +46,4 @@ function mapStateToProps(state) {
 	return { authenticated: state.sessions.authenticated }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { destroySession })(Header);
