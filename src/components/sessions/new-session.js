@@ -55,7 +55,6 @@ class NewSession extends Component {
 	}
 
 	render() {
-		console.log(this.state.errors);
 		return (
 			<div className="new-session-page">
 				<h1>Sign In</h1>
