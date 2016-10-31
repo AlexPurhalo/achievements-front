@@ -1,5 +1,6 @@
 // Node modules import
 import axios from 'axios';
+import bcrypt from 'bcrypt-nodejs';
 
 // API service address
 const ROOT_URL = 'http://localhost:5000';
@@ -14,7 +15,10 @@ import {
 // Calls function that creates person or fetches error message
 export function createPerson(username, password) {
 	return function(dispatch) {
-		const data = { username: username, enc_password: password };
+		const hashedPassword = bcrypt.hashSync(password),
+					data = { username: username, enc_password: hashedPassword };
+
+		console.log(hashedPassword);
 
 		return axios.post(`${ROOT_URL}/users`, data)
 			.then(res => dispatch(createPersonSuccess(res)))
