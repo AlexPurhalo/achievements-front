@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 // Actions import
 import { createPerson } from '../../actions/persons';
 import { addFlashMessage } from '../../actions/flash-messages';
+import { createSession } from '../../actions/sessions';
 
 // Shows form and calls action creators to add a new user
 class NewPerson extends Component {
@@ -59,8 +60,14 @@ class NewPerson extends Component {
 							// adds flash message says that record wsa created
 							this.props.addFlashMessage('success', 'Account has been created'),
 							// redirects to root page after then record was created
-							browserHistory.push('/')
+							browserHistory.push('/'),
+							// creates new session
+							this.props.createSession(username, password),
+							// sets jwt token to indicate session
+							localStorage.setItem('token', action.payload.jwt)
 						);
+
+						action.type === 'create_person_failure' && this.setState({ errors: action.payload });
 					})
 			// fill in global errors variable by passing occurred errors
 			:	this.setState({ errors: errors });
@@ -92,7 +99,6 @@ class NewPerson extends Component {
 				</form>
 				<ul>
 					{ this.state.errors.map(error => <li key={error}>{error}</li> )}
-					{ this.props.errors && this.props.errors.map((error => <li key={error}>{error}</li> ))}
 				</ul>
 
 			</div>
@@ -103,4 +109,4 @@ class NewPerson extends Component {
 function mapStateToProps(state) {
 	return { errors: state.persons.errors }
 }
-export default connect(mapStateToProps, { createPerson, addFlashMessage })(NewPerson)
+export default connect(mapStateToProps, { createPerson, addFlashMessage, createSession })(NewPerson)

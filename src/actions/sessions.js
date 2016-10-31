@@ -18,7 +18,6 @@ export function createSession(username, password) {
 }
 
 function createSessionSuccess(data) {
-	console.log(data);
 	return {
 		type: CREATE_SESSION_SUCCESS,
 		payload: data
