@@ -9,6 +9,8 @@ const ROOT_URL = 'http://localhost:5000';
 import {
 	CREATE_PERSON_SUCCESS,
 	CREATE_PERSON_FAILURE,
+	FETCH_PERSON_SUCCESS,
+	FETCH_PERSON_FAILURE,
 	FETCH_ALL_PERSONS
 } from '../constants/persons';
 
@@ -18,8 +20,6 @@ export function createPerson(username, password) {
 		const hashedPassword = bcrypt.hashSync(password),
 					data = { username: username, enc_password: hashedPassword };
 
-		console.log(hashedPassword);
-
 		return axios.post(`${ROOT_URL}/users`, data)
 			.then(res => dispatch(createPersonSuccess(res)))
 			.catch(req => dispatch(createPersonErrors(req.response.data.errors)));
@@ -28,7 +28,6 @@ export function createPerson(username, password) {
 
 // Creates person
 function createPersonSuccess(res) {
-	console.log(res);
 	return {
 		type: CREATE_PERSON_SUCCESS,
 		payload: res.data
@@ -43,11 +42,37 @@ function createPersonErrors(errors) {
 	}
 }
 
+
+// Shows person's data
+export function fetchPerson(id) {
+	return function(dispatch) {
+		return axios.get(`${ROOT_URL}/users/${id}`)
+			.then(res => dispatch(fetchPersonSuccess(res.data)))
+			.catch(req => dispatch(fetchPersonFailure(req.response.data.errors)))
+	}
+}
+
+function fetchPersonSuccess(data) {
+	console.log(data);
+	return {
+		type: FETCH_PERSON_SUCCESS,
+		payload: data
+	}
+}
+
+function fetchPersonFailure(errors) {
+	console.log(errors);
+	return {
+		type: FETCH_PERSON_FAILURE,
+		payload: errors
+	}
+}
+
+
 export function fetchAllPersons() {
 	return function(dispatch) {
 		return axios.get(`${ROOT_URL}/users`)
 			.then(function(response) {
-				console.log(response.data);
 				dispatch({
 					type: FETCH_ALL_PERSONS,
 					payload: response.data
