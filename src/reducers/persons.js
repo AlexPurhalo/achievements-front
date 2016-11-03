@@ -4,7 +4,8 @@ import {
 	CREATE_PERSON_FAILURE,
 	FETCH_PERSON_SUCCESS,
 	FETCH_PERSON_FAILURE,
-	FETCH_ALL_PERSONS
+	FETCH_ALL_PERSONS_SUCCESS,
+	FETCH_ALL_PERSONS_FAILURE
 } from '../constants/persons';
 
 // Initial states for reducers
@@ -21,13 +22,15 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, single_person: action.payload };
 		case CREATE_PERSON_FAILURE:
 			return { ...state, errors: action.payload };
-		case FETCH_ALL_PERSONS:
-			return { ...state, all_persons: action.payload };
 		case FETCH_PERSON_SUCCESS:
 			console.log(action.payload);
 			return { ...state, single_person: action.payload };
 		case FETCH_PERSON_FAILURE:
 			console.log(action.payload);
+			return { ...state, errors: action.payload };
+		case FETCH_ALL_PERSONS_SUCCESS:
+			return { ...state, all_persons: action.payload };
+		case FETCH_ALL_PERSONS_FAILURE:
 			return { ...state, errors: action.payload };
 		default:
 			return state;

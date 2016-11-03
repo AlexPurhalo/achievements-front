@@ -11,7 +11,8 @@ import {
 	CREATE_PERSON_FAILURE,
 	FETCH_PERSON_SUCCESS,
 	FETCH_PERSON_FAILURE,
-	FETCH_ALL_PERSONS
+	FETCH_ALL_PERSONS_SUCCESS,
+	FETCH_ALL_PERSONS_FAILURE
 } from '../constants/persons';
 
 // Calls function that creates person or fetches error message
@@ -53,7 +54,6 @@ export function fetchPerson(id) {
 }
 
 function fetchPersonSuccess(data) {
-	console.log(data);
 	return {
 		type: FETCH_PERSON_SUCCESS,
 		payload: data
@@ -61,7 +61,6 @@ function fetchPersonSuccess(data) {
 }
 
 function fetchPersonFailure(errors) {
-	console.log(errors);
 	return {
 		type: FETCH_PERSON_FAILURE,
 		payload: errors
@@ -69,16 +68,26 @@ function fetchPersonFailure(errors) {
 }
 
 
-export function fetchAllPersons() {
+// Shows all persons
+export function fetchAllPersons(pageNum) {
 	return function(dispatch) {
-		return axios.get(`${ROOT_URL}/users`)
-			.then(function(response) {
-				dispatch({
-					type: FETCH_ALL_PERSONS,
-					payload: response.data
-				});
-			})
+		return axios.get(`${ROOT_URL}/users?page=${pageNum}`)
+			.then(res => dispatch(fetchAllPersonsSuccess(res.data)))
+			.catch(req => dispatch(fetchAllPersonsFailure(req.response.data.errors)));
 	}
 }
 
+function fetchAllPersonsSuccess(data) {
+	console.log(data);
+	return {
+		type: FETCH_ALL_PERSONS_SUCCESS,
+		payload: data
+	}
+}
 
+function fetchAllPersonsFailure(errors) {
+	console.log(errors);
+	return {
+		type: FETCH_ALL_PERSONS_FAILURE
+	}
+}
