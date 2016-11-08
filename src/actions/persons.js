@@ -78,7 +78,6 @@ export function fetchAllPersons(pageNum) {
 }
 
 function fetchAllPersonsSuccess(data) {
-	console.log(data);
 	return {
 		type: FETCH_ALL_PERSONS_SUCCESS,
 		payload: data
@@ -86,8 +85,8 @@ function fetchAllPersonsSuccess(data) {
 }
 
 function fetchAllPersonsFailure(errors) {
-	console.log(errors);
 	return {
-		type: FETCH_ALL_PERSONS_FAILURE
+		type: FETCH_ALL_PERSONS_FAILURE,
+		payload: errors
 	}
 }

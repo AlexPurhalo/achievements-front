@@ -12,7 +12,8 @@ import {
 const INITIAL_STATE = {
 	single_person: {},
 	all_persons: [],
-	errors: []
+	errors: [],
+	users_page_info: { obj: 'go'}
 };
 
 // Actions reducing and state returning
@@ -23,13 +24,11 @@ export default function(state = INITIAL_STATE, action) {
 		case CREATE_PERSON_FAILURE:
 			return { ...state, errors: action.payload };
 		case FETCH_PERSON_SUCCESS:
-			console.log(action.payload);
 			return { ...state, single_person: action.payload };
 		case FETCH_PERSON_FAILURE:
-			console.log(action.payload);
 			return { ...state, errors: action.payload };
 		case FETCH_ALL_PERSONS_SUCCESS:
-			return { ...state, all_persons: action.payload };
+			return { ...state, all_persons: action.payload.users, users_page_info: action.payload.meta };
 		case FETCH_ALL_PERSONS_FAILURE:
 			return { ...state, errors: action.payload };
 		default:

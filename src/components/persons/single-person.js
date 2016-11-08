@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 class SinglePerson extends Component {
 	render() {
 		return (
-			<Link to={`persons/${this.props.personId}`}>
+			<Link to={`persons/${this.props.id}`}>
 				<li>
 					{this.props.username}
 				</li>

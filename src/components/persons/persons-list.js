@@ -7,6 +7,8 @@ import { fetchAllPersons } from '../../actions/persons';
 
 // Persons-list components import
 import SinglePerson from './single-person';
+import PersonsPagination from './persons-pagination';
+
 
 // Shows persons information
 class Persons extends Component {
@@ -15,8 +17,9 @@ class Persons extends Component {
 	}
 
 	render() {
+		console.log(this.props.personsPageInfo);
 		console.log(this.props.persons);
-		console.log(this.props.errors);
+		console.log(this.props.personsPageInfo.total_pages);
 		return (
 			<div className="persons-list">
 				<h3>Persons list</h3>
@@ -28,6 +31,9 @@ class Persons extends Component {
 							username={person.username} />
 					)}
 				</ul>
+				<PersonsPagination
+					fetchPersons={this.props.fetchAllPersons}
+					pagesCount={this.props.personsPageInfo.total_pages} />
 			</div>
 		);
 	}
@@ -36,7 +42,8 @@ class Persons extends Component {
 function mapStateToProps(state) {
 	return {
 		persons: state.persons.all_persons,
-		errors: state.persons.error
+		personsPageInfo: state.persons.users_page_info,
+		errors: state.persons.errors
 	}
 }
 
