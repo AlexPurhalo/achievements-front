@@ -1,5 +1,5 @@
 // Action types import
-import { ADD_FLASH_MESSAGE } from '../constants/flash-messages';
+import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from '../constants/flash-messages';
 
 export function addFlashMessage(type, text) {
 	const data = {
@@ -12,3 +12,6 @@ export function addFlashMessage(type, text) {
 		payload: data
 	}
 }
+
+// cleans appeared flash message
+export function destroyFlashMessage() { return { type: DELETE_FLASH_MESSAGE } }
