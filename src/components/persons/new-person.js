@@ -64,7 +64,8 @@ class NewPerson extends Component {
 							// creates new session
 							this.props.createSession(username, password),
 							// sets jwt token to indicate session
-							localStorage.setItem('token', action.payload.access_token)
+							localStorage.setItem('token', action.payload.access_token),
+							localStorage.setItem('accountId', action.payload.id)
 						);
 
 						action.type === 'create_person_failure' && this.setState({ errors: action.payload });

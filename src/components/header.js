@@ -12,6 +12,7 @@ class Header extends Component {
 	onSignOutClick() {
 		this.props.destroySession();
 		localStorage.removeItem('token');
+		localStorage.removeItem('accountId');
 		browserHistory.push('/');
 		this.props.addFlashMessage('info', 'Bye, bye');
 	}

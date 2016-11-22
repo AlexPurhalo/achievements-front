@@ -46,7 +46,8 @@ class NewSession extends Component {
 						action.type === "create_session_success" && (
 							this.props.addFlashMessage('success', 'You have signed in successfully'),
 							browserHistory.push('/'),
-								localStorage.setItem('token', action.payload.jwt)
+							localStorage.setItem('accountId', action.payload.id),
+							localStorage.setItem('token', action.payload.jwt)
 						);
 
 						action.type === 'create_session_failure' && this.setState({ errors: action.payload });
