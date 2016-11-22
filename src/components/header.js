@@ -7,6 +7,7 @@ import { Link, IndexLink, browserHistory } from 'react-router';
 // Actions import
 import { destroySession } from '../actions/sessions';
 import { addFlashMessage } from '../actions/flash-messages';
+import { fetchPerson } from '../actions/persons';
 
 class Header extends Component {
 	onSignOutClick() {
@@ -15,6 +16,12 @@ class Header extends Component {
 		localStorage.removeItem('accountId');
 		browserHistory.push('/');
 		this.props.addFlashMessage('info', 'Bye, bye');
+	}
+
+	onRedirectToAccountClick() {
+		const account = localStorage.getItem('accountId');
+		account && browserHistory.push(`/persons/${account}`);
+		this.props.fetchPerson(account);
 	}
 
 	navbarForGuest() {
@@ -40,6 +47,11 @@ class Header extends Component {
 				<Link
 					onClick={this.onSignOutClick.bind(this)}
 					className="nav-link cursor-pointer">Sign Out</Link>
+			</li>,
+			<li className="nav-item" key={5}>
+				<Link
+					onClick={this.onRedirectToAccountClick.bind(this)}
+					className="nav-link cursor-pointer">Account</Link>
 			</li>
 		];
 	}
@@ -70,4 +82,4 @@ function mapStateToProps(state) {
 	return { authenticated: state.sessions.authenticated }
 }
 
-export default connect(mapStateToProps, { destroySession, addFlashMessage })(Header);
+export default connect(mapStateToProps, { destroySession, addFlashMessage, fetchPerson })(Header);
