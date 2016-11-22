@@ -17,9 +17,6 @@ class Persons extends Component {
 	}
 
 	render() {
-		console.log(this.props.personsPageInfo);
-		console.log(this.props.persons);
-		console.log(this.props.personsPageInfo.total_pages);
 		return (
 			<div className="persons-list">
 				<h3>Persons list</h3>

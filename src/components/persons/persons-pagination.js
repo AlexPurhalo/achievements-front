@@ -44,7 +44,6 @@ class PersonsPagination extends Component {
 
 	// Changes current page to passed number
 	choicePageClick(pageNum) {
-		console.log(`value: ${pageNum}`)
 		this.props.fetchPersons(pageNum);
 		this.setState({pageNum: pageNum})
 	}
@@ -63,7 +62,6 @@ class PersonsPagination extends Component {
 
 	// Shows button that calls method for page changing to previous
 	nextPage() {
-		console.log(`pages count: ${this.props.pagesCount}`);
 		return (
 			<li className={this.state.pageNum === this.props.pagesCount ? "page-item disabled" : "page-item"} >
 				<button className="page-link" aria-label="Next" onClick={this.nextPageClick}>
@@ -109,7 +107,6 @@ class PersonsPagination extends Component {
 
 	// JSX rendering
 	render() {
-		console.log(this.state.pageNum);
 		return (
 			<nav aria-label="...">
 				<ul className="pagination">

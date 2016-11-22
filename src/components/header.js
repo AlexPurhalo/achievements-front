@@ -44,7 +44,6 @@ class Header extends Component {
 	}
 
 	render() {
-		console.log(this.props.authenticated);
 		return (
 			<div className="header">
 				<nav className="navbar navbar-light">

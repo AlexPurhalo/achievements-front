@@ -1,5 +1,7 @@
-// Initial states import
-import { INITIAL_STATE } from './init_states/flash-messages';
+// Initial states for reducers
+export const INITIAL_STATE = {
+	message: {}
+};
 
 // Action types import
 import { ADD_FLASH_MESSAGE } from '../constants/flash-messages';

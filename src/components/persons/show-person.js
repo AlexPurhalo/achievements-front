@@ -12,9 +12,6 @@ class ShowPerson extends Component {
 	}
 
 	render() {
-		console.log(this.props.person);
-		console.log(this.props.errors);
-
 		return (
 			<div>
 				{
