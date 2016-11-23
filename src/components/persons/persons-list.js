@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { fetchAllPersons } from '../../actions/persons';
 
 // Persons-list components import
-import SinglePerson from './single-person';
-import PersonsPagination from './persons-pagination';
+import SinglePerson from './persons-list-page/single-person';
+import PersonsPagination from './persons-list-page/persons-pagination';
 
 
 // Shows persons information
