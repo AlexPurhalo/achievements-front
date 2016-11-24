@@ -7,11 +7,11 @@ import { fetchPerson } from '../../actions/persons';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
-import Avatar from './person-show-page/avatar';
-import PersonInfo from './person-show-page/person-info';
-import Achievements from './person-show-page/achievements';
-import Works from './person-show-page/works';
-import ContactInfo from './person-show-page/contact-info';
+// import Avatar from './person-show-page/avatar';
+// import PersonInfo from './person-show-page/person-info';
+// import Achievements from './person-show-page/achievements';
+// import Works from './person-show-page/works';
+// import ContactInfo from './person-show-page/contact-info';
 
 // Shows info about person
 class ShowPerson extends Component {
@@ -22,14 +22,7 @@ class ShowPerson extends Component {
 	render() {
 		return (
 			<div className="person-show-page">
-				<Profile />
-				<div className="row">
-					<Avatar />
-					<PersonInfo />
-				</div>
-				<Achievements />
-				<Works />
-				<ContactInfo/>
+				<Profile personId={this.props.person.id}/>
 			</div>
 		);
 	}
