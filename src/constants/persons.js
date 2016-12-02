@@ -9,3 +9,8 @@ export const FETCH_PERSON_FAILURE = 'fetch_person_failure';
 // Fetch persons constants
 export const FETCH_ALL_PERSONS_SUCCESS = 'fetch_all_persons_success';
 export const FETCH_ALL_PERSONS_FAILURE = 'fetch_all_persons_failure';
+
+
+// Updates person's data
+export const UPDATE_PERSON_SUCCESS = 'update_person_success';
+export const UPDATE_PERSON_FAILURE = 'update_person_failure';

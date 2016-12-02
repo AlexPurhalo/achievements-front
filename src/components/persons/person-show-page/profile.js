@@ -13,6 +13,10 @@ export default class Profile extends Component {
 		this.onEditSkills = this.onEditSkills.bind(this);
 	}
 
+	componentWillMount() {
+		this.props.id && this.props.updateProfile(this.props.id, 'updated!', 'updated!')
+	}
+
 	onEditProfile() { this.setState({ onEditProfile: !this.state.onEditProfile }) }
 	onEditSkills() { this.setState({ onEditSkills: !this.state.onEditSkills }) }
 

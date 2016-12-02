@@ -12,14 +12,16 @@ import {
 	FETCH_PERSON_SUCCESS,
 	FETCH_PERSON_FAILURE,
 	FETCH_ALL_PERSONS_SUCCESS,
-	FETCH_ALL_PERSONS_FAILURE
+	FETCH_ALL_PERSONS_FAILURE,
+	UPDATE_PERSON_SUCCESS,
+	UPDATE_PERSON_FAILURE
 } from '../constants/persons';
 
 // Calls function that creates person or fetches error message
 export function createPerson(username, password) {
 	return function(dispatch) {
 		const hashedPassword = bcrypt.hashSync(password),
-					data = { username: username, enc_password: hashedPassword };
+			data = { username: username, enc_password: hashedPassword };
 
 		return axios.post(`${ROOT_URL}/users`, data)
 			.then(res => dispatch(createPersonSuccess(res)))
@@ -87,6 +89,35 @@ function fetchAllPersonsSuccess(data) {
 function fetchAllPersonsFailure(errors) {
 	return {
 		type: FETCH_ALL_PERSONS_FAILURE,
+		payload: errors
+	}
+}
+
+
+// Updates person
+export function updatePerson(id, profile, skills) {
+	const data = { profile: profile, skills: skills },
+		headers = { headers: { 'X-Access-Token': localStorage.getItem('token') } };
+
+	return function(dispatch) {
+		return axios.put(`${ROOT_URL}/users/${id}`, data, headers )
+			.then(res => dispatch(updatePersonSuccess(res.data)))
+			.catch(req => dispatch(updatePersonFailure(req.response.data.errors)));
+	}
+}
+
+function updatePersonSuccess(data) {
+	console.log(data);
+	return {
+		type: UPDATE_PERSON_SUCCESS,
+		payload: data
+	}
+}
+
+function updatePersonFailure(errors) {
+	console.log(errors);
+	return {
+		type: UPDATE_PERSON_FAILURE,
 		payload: errors
 	}
 }

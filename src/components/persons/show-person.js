@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions import
 import { fetchPerson } from '../../actions/persons';
+import { updatePerson } from '../../actions/persons';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
@@ -25,7 +26,8 @@ class ShowPerson extends Component {
 				<Profile
 					id={this.props.person.id}
 					profile={this.props.person.profile}
-					skills={this.props.person.skills} />
+					skills={this.props.person.skills}
+					updateProfile={this.props.updatePerson}/>
 			</div>
 		);
 	}
@@ -38,4 +40,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { fetchPerson})(ShowPerson);
+export default connect(mapStateToProps, { fetchPerson, updatePerson })(ShowPerson);
