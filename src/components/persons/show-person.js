@@ -22,7 +22,10 @@ class ShowPerson extends Component {
 	render() {
 		return (
 			<div className="person-show-page">
-				<Profile personId={this.props.person.id}/>
+				<Profile
+					id={this.props.person.id}
+					profile={this.props.person.profile}
+					skills={this.props.person.skills} />
 			</div>
 		);
 	}

@@ -11,14 +11,23 @@
 
 button:focus { outline:0 !important; }
 
+// Edit input
 .edit-input {
 	border: none;
 	border-bottom: solid;
 	text-align: center;
-	font-weight: 500;
-	letter-spacing: 5px;
+
 }
+
 .edit-input:focus {
 	outline: none;
 }
 
+// Inline list
+.inline-list {
+	padding: 0 0;
+	margin: 0 0;
+	.inline-block {
+		display: inline-block;
+	}
+}

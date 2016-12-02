@@ -13,25 +13,17 @@ export default class Profile extends Component {
 		this.onEditSkills = this.onEditSkills.bind(this);
 	}
 
-	onEditProfile() {
-		this.setState({ onEditProfile: !this.state.onEditProfile });
-	}
-	onEditSkills() {
-		this.setState({ onEditSkills: !this.state.onEditSkills });
-	}
+	onEditProfile() { this.setState({ onEditProfile: !this.state.onEditProfile }) }
+	onEditSkills() { this.setState({ onEditSkills: !this.state.onEditSkills }) }
 
-	showProfile() {
-		return "Full-Stack Web Developer";
-	}
+	showProfile(profile) { return <h1 className="profile">{profile ? `${profile}` : 'Person Profile'}</h1> }
 
-	showSkills() {
-		return "Ruby (Grape, Rails) + JS (React)";
-	}
+	showSkills(skills) { return <h2 className="skills">{skills ? `${skills}` : 'Person Skills'}</h2> }
 
 	showProfileForm() {
 		return (
 			<form>
-				<input autoFocus type="text" placeholder="Add Your Profile" className="edit-input"/>
+				<input autoFocus type="text" placeholder="Add Your Profile" className="edit-input profile-input"/>
 			</form>
 		);
 	}
@@ -39,7 +31,7 @@ export default class Profile extends Component {
 	showSkillsForm() {
 		return (
 			<form>
-				<input autoFocus type="text" placeholder="Add Your Skills" className="edit-input"/>
+				<input autoFocus type="text" placeholder="Add Your Skills" className="edit-input skills-input"/>
 			</form>
 		);
 	}
@@ -61,18 +53,37 @@ export default class Profile extends Component {
 	}
 
 	render() {
-		const personId = this.props.personId, accountId = localStorage.getItem('accountId');
+		const accountId = localStorage.getItem('accountId'),
+			id = this.props.id,
+			profile = this.props.profile,
+			skills = this.props.skills;
 
 		return (
 			<div className="row profile-section">
-				<h1 className="profile">
-					{personId == accountId && this.state.onEditProfile ? this.showProfileForm() : this.showProfile()}
-					{personId == accountId && this.onEditProfileButton() }
-				</h1>
-				<h2 className="skills">
-					{personId == accountId && this.state.onEditSkills ? this.showSkillsForm() : this.showSkills()}
-					{personId == accountId && this.onEditSkillsButton() }
-				</h2>
+				<ul className="inline-list">
+					<li className="inline-block">
+						{
+							id == accountId && this.state.onEditProfile
+								? this.showProfileForm()
+								: this.showProfile(profile)
+						}
+					</li>
+					<li className="inline-block">
+						{id == accountId && this.onEditProfileButton()}
+					</li>
+				</ul>
+				<ul className="inline-list">
+					<li className="inline-block">
+						{
+							id == accountId && this.state.onEditSkills
+								? this.showSkillsForm()
+								: this.showSkills(skills)
+						}
+					</li>
+					<li className="inline-block">
+						{id == accountId && this.onEditSkillsButton()}
+					</li>
+				</ul>
 			</div>
 		);
 	}
