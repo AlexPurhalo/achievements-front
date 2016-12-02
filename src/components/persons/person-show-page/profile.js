@@ -1,6 +1,9 @@
 // Node modules import
 import React, { Component } from 'react';
 
+// Images import
+import PencilIcon from "../../../../images/edit-pencil.svg";
+
 export default class Profile extends Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +31,7 @@ export default class Profile extends Component {
 	showProfileForm() {
 		return (
 			<form>
-				<input autoFocus type="text" placeholder="Add Your Profile" />
+				<input autoFocus type="text" placeholder="Add Your Profile" className="edit-input"/>
 			</form>
 		);
 	}
@@ -36,7 +39,7 @@ export default class Profile extends Component {
 	showSkillsForm() {
 		return (
 			<form>
-				<input autoFocus type="text" placeholder="Add Your Skills" />
+				<input autoFocus type="text" placeholder="Add Your Skills" className="edit-input"/>
 			</form>
 		);
 	}
@@ -44,7 +47,7 @@ export default class Profile extends Component {
 	onEditProfileButton() {
 		return (
 			<button type="reset" className="non-styled-btn" onClick={this.onEditProfile}>
-				<img className='profile-edit-icon' src="http://simpleicon.com/wp-content/uploads/pencil.svg" alt="edit-icon"/>
+				<img className='profile-edit-icon' src={PencilIcon} alt="edit-icon"/>
 			</button>
 		);
 	}
@@ -52,7 +55,7 @@ export default class Profile extends Component {
 	onEditSkillsButton() {
 		return (
 			<button type="reset" className="non-styled-btn" onClick={this.onEditSkills}>
-				<img className='skills-edit-icon' src="http://simpleicon.com/wp-content/uploads/pencil.svg" alt="edit-icon"/>
+				<img className='skills-edit-icon' src={PencilIcon} alt="edit-icon"/>
 			</button>
 		);
 	}

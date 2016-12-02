@@ -10,3 +10,15 @@
 }
 
 button:focus { outline:0 !important; }
+
+.edit-input {
+	border: none;
+	border-bottom: solid;
+	text-align: center;
+	font-weight: 500;
+	letter-spacing: 5px;
+}
+.edit-input:focus {
+	outline: none;
+}
+

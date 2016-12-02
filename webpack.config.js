@@ -19,6 +19,10 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loaders: ["style", "css", "sass"]
+			},
+			{
+				test: /\.(png|jpg|svg)$/,
+				loader: 'url-loader?limit=200000'
 			}
 		]
 	},
