@@ -95,10 +95,8 @@ function fetchAllPersonsFailure(errors) {
 
 
 // Updates person
-export function updatePerson(id, profile, skills) {
-	const data = { profile: profile, skills: skills },
-		headers = { headers: { 'X-Access-Token': localStorage.getItem('token') } };
-
+export function updatePerson(id, data) {
+	const headers = { headers: { 'X-Access-Token': localStorage.getItem('token') } };
 	return function(dispatch) {
 		return axios.put(`${ROOT_URL}/users/${id}`, data, headers )
 			.then(res => dispatch(updatePersonSuccess(res.data)))
@@ -107,7 +105,6 @@ export function updatePerson(id, profile, skills) {
 }
 
 function updatePersonSuccess(data) {
-	console.log(data);
 	return {
 		type: UPDATE_PERSON_SUCCESS,
 		payload: data
@@ -115,7 +112,6 @@ function updatePersonSuccess(data) {
 }
 
 function updatePersonFailure(errors) {
-	console.log(errors);
 	return {
 		type: UPDATE_PERSON_FAILURE,
 		payload: errors

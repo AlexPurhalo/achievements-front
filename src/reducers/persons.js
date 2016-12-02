@@ -5,7 +5,9 @@ import {
 	FETCH_PERSON_SUCCESS,
 	FETCH_PERSON_FAILURE,
 	FETCH_ALL_PERSONS_SUCCESS,
-	FETCH_ALL_PERSONS_FAILURE
+	FETCH_ALL_PERSONS_FAILURE,
+	UPDATE_PERSON_SUCCESS,
+	UPDATE_PERSON_FAILURE
 } from '../constants/persons';
 
 // Initial states for reducers
@@ -31,6 +33,10 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, all_persons: action.payload.users, users_page_info: action.payload.meta };
 		case FETCH_ALL_PERSONS_FAILURE:
 			return { ...state, errors: action.payload };
+		case UPDATE_PERSON_SUCCESS:
+			return { ...state, single_person: action.payload };
+		case UPDATE_PERSON_FAILURE:
+			return { ...state, update_errors: action.payload };
 		default:
 			return state;
 	}

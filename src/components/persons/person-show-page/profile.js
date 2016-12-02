@@ -3,22 +3,41 @@ import React, { Component } from 'react';
 
 // Images import
 import PencilIcon from "../../../../images/edit-pencil.svg";
+import CompleteMarkIcon from '../../../../images/complete-mark.png'
 
 export default class Profile extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { onEditProfile: false, onEditSkills: false };
+		this.state = {
+			onEditProfile: false,
+			onEditSkills: false,
+			profile: '',
+			skills: ''
+		};
 
 		this.onEditProfile = this.onEditProfile.bind(this);
 		this.onEditSkills = this.onEditSkills.bind(this);
-	}
-
-	componentWillMount() {
-		this.props.id && this.props.updateProfile(this.props.id, 'updated!', 'updated!')
+		this.onChangeProfile = this.onChangeProfile.bind(this);
+		this.onChangeSkills = this.onChangeSkills.bind(this);
+		this.onUpdateProfile = this.onUpdateProfile.bind(this);
+		this.onUpdateSkills = this.onUpdateSkills.bind(this);
 	}
 
 	onEditProfile() { this.setState({ onEditProfile: !this.state.onEditProfile }) }
 	onEditSkills() { this.setState({ onEditSkills: !this.state.onEditSkills }) }
+	onChangeProfile(e) { this.setState({ profile: e.target.value })}
+	onChangeSkills(e) { this.setState({ skills: e.target.value })}
+	onUpdateProfile(e) {
+		e.preventDefault();
+		this.props.updateProfile(this.props.id, { profile: this.state.profile });
+		this.setState({ onEditProfile: !this.state.onEditProfile })
+	}
+
+	onUpdateSkills(e) {
+		e.preventDefault();
+		this.props.updateProfile(this.props.id, { skills: this.state.skills });
+		this.setState({ onEditSkills: !this.state.onEditSkills })
+	}
 
 	showProfile(profile) { return <h1 className="profile">{profile ? `${profile}` : 'Person Profile'}</h1> }
 
@@ -26,16 +45,32 @@ export default class Profile extends Component {
 
 	showProfileForm() {
 		return (
-			<form>
-				<input autoFocus type="text" placeholder="Add Your Profile" className="edit-input profile-input"/>
+			<form onSubmit={this.onUpdateProfile}>
+				<input
+					autoFocus
+					onChange={this.onChangeProfile}
+					type="text"
+					placeholder="Add Your Profile"
+					className="edit-input profile-input"/>
+				<button type="submit" className="non-styled-btn">
+					<img className='skills-complete-mark-icon' src={CompleteMarkIcon} alt="edit-icon"/>
+				</button>
 			</form>
 		);
 	}
 
 	showSkillsForm() {
 		return (
-			<form>
-				<input autoFocus type="text" placeholder="Add Your Skills" className="edit-input skills-input"/>
+			<form onSubmit={this.onUpdateSkills}>
+				<input
+					autoFocus
+					onChange={this.onChangeSkills}
+					type="text"
+					placeholder="Add Your Skills"
+					className="edit-input skills-input"/>
+				<button type="submit" className="non-styled-btn">
+					<img className='skills-complete-mark-icon' src={CompleteMarkIcon} alt="edit-icon"/>
+				</button>
 			</form>
 		);
 	}
