@@ -16,7 +16,6 @@ button:focus { outline:0 !important; }
 	border: none;
 	border-bottom: solid;
 	text-align: center;
-
 }
 
 .edit-input:focus {
@@ -30,4 +29,9 @@ button:focus { outline:0 !important; }
 	.inline-block {
 		display: inline-block;
 	}
+}
+
+ul {
+	padding: 0 0;
+	margin: 0 0;
 }

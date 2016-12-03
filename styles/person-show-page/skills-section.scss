@@ -1,0 +1,18 @@
+.skills-section {
+	margin: 0 0 2.5rem;
+	.skills {
+		li, .skill {
+			display: inline-block;
+			margin: 0 1rem;
+			font-weight: 700;
+			font-size: 1.25rem;
+			.add-skill-input {
+				max-width: 114px;
+			}
+			.add-skill-img {
+				width: 28px;
+				height: 28px;
+			}
+		}
+	}
+}

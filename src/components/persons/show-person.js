@@ -8,6 +8,8 @@ import { updatePerson } from '../../actions/persons';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
+import Skills from './person-show-page/skills';
+
 // import Avatar from './person-show-page/avatar';
 // import PersonInfo from './person-show-page/person-info';
 // import Achievements from './person-show-page/achievements';
@@ -23,6 +25,7 @@ class ShowPerson extends Component {
 	render() {
 		return (
 			<div className="person-show-page">
+				<Skills />
 				<Profile
 					id={this.props.person.id}
 					profile={this.props.person.profile}
