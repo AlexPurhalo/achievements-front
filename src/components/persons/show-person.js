@@ -9,7 +9,7 @@ import { fetchPersonFrameworks } from '../../actions/person-frameworks';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
-import Skills from './person-show-page/skills';
+import Frameworks from './person-show-page/frameworks';
 
 // import Avatar from './person-show-page/avatar';
 // import PersonInfo from './person-show-page/person-info';
@@ -25,14 +25,16 @@ class ShowPerson extends Component {
 	}
 
 	render() {
+		// console.log(`person frameworks from parent component: ${this.props.person_frameworks}`);
 		return (
 			<div className="person-show-page">
-				<Skills />
+				<Frameworks
+					frameworks={this.props.person_frameworks} />
 				<Profile
 					id={this.props.person.id}
 					profile={this.props.person.profile}
 					skills={this.props.person.skills}
-					updateProfile={this.props.updatePerson}/>
+					updateProfile={this.props.updatePerson} />
 			</div>
 		);
 	}
@@ -41,7 +43,8 @@ class ShowPerson extends Component {
 function mapStateToProps(state) {
 	return {
 		person: state.persons.single_person,
-		errors: state.persons.errors
+		errors: state.persons.errors,
+		person_frameworks: state.personFrameworks.frameworks
 	}
 }
 

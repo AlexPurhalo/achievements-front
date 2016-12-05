@@ -10,17 +10,17 @@ import {
 	FETCH_PERSON_FRAMEWORKS_FAILURE
 } from '../constants/person-frameworks';
 
-// Fetches data about person skills
+// Fetches data about person frameworks
 export function fetchPersonFrameworks(personId) {
 	return function(dispatch) {
 		return axios.get(`${ROOT_URL}/users/${personId}/frameworks`)
-			.then(res => dispatch(fetchPersonFrameworksSuccess(res)))
+			.then(res => dispatch(fetchPersonFrameworksSuccess(res.data)))
 			.catch(req => dispatch(fetchPersonFrameworksFailure(req.response.data.errors)))
 	}
 }
 
 function fetchPersonFrameworksSuccess(data) {
-	console.log(data);
+	// console.log(`fetch person frameworks  success action: ${data}`);
 	return {
 		type: FETCH_PERSON_FRAMEWORKS_SUCCESS,
 		payload: data
