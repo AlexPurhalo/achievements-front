@@ -10,6 +10,9 @@ export default class Skills extends Component {
 		return (
 			<div className="skills-section">
 				<ul className="skills">
+					{
+						<li className="skill">{this.props.skill}</li>
+					}
 					<li className="skill"># React</li>
 					<li className="skill"># Rails</li>
 					<li className="skill"># Grape</li>

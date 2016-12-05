@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // Actions import
 import { fetchPerson } from '../../actions/persons';
 import { updatePerson } from '../../actions/persons';
+import { fetchPersonFrameworks } from '../../actions/person-frameworks';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
@@ -20,6 +21,7 @@ import Skills from './person-show-page/skills';
 class ShowPerson extends Component {
 	componentWillMount() {
 		this.props.fetchPerson(this.props.params.id);
+		this.props.fetchPersonFrameworks(this.props.params.id)
 	}
 
 	render() {
@@ -43,4 +45,6 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { fetchPerson, updatePerson })(ShowPerson);
+export default connect(mapStateToProps, {
+	fetchPerson, updatePerson, fetchPersonFrameworks
+})(ShowPerson);
