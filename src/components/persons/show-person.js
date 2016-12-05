@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Actions import
 import { fetchPerson } from '../../actions/persons';
 import { updatePerson } from '../../actions/persons';
-import { fetchPersonFrameworks } from '../../actions/person-frameworks';
+import { fetchPersonFrameworks, addPersonFramework } from '../../actions/person-frameworks';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
@@ -29,7 +29,9 @@ class ShowPerson extends Component {
 		return (
 			<div className="person-show-page">
 				<Frameworks
-					frameworks={this.props.person_frameworks} />
+					frameworks={this.props.person_frameworks}
+					personId={this.props.person.id}
+					addFramework={this.props.addPersonFramework} />
 				<Profile
 					id={this.props.person.id}
 					profile={this.props.person.profile}
@@ -49,5 +51,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-	fetchPerson, updatePerson, fetchPersonFrameworks
+	fetchPerson, updatePerson, fetchPersonFrameworks, addPersonFramework
 })(ShowPerson);
