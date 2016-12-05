@@ -9,7 +9,8 @@ import {
 	FETCH_PERSON_FRAMEWORKS_SUCCESS,
 	FETCH_PERSON_FRAMEWORKS_FAILURE,
 	ADD_PERSON_FRAMEWORK_SUCCESS,
-	ADD_PERSON_FRAMEWORK_FAILURE
+	ADD_PERSON_FRAMEWORK_FAILURE,
+	REMOVE_PERSON_FRAMEWORK_SUCCESS
 } from '../constants/person-frameworks';
 
 // Fetches data about person frameworks
@@ -49,7 +50,7 @@ export function addPersonFramework(personId, framework) {
 }
 
 function addPersonFrameworkSuccess(data) {
-	console.log(`data from add person framework action: ${data}`);
+	// console.log(`data from add person framework action: ${data}`);
 	return {
 		type: ADD_PERSON_FRAMEWORK_SUCCESS,
 		payload: data
@@ -61,5 +62,23 @@ function addPersonFrameworkFailure(errors) {
 	return {
 		type: ADD_PERSON_FRAMEWORK_FAILURE,
 		payload: errors
+	}
+}
+
+
+// Removes framework from the user's framework list
+export function removePersonFramework(personId, frameworkId) {
+	console.log(`${ROOT_URL}/users/${personId}/frameworks/${frameworkId}`);
+	return function(dispatch) {
+		return axios.delete(`${ROOT_URL}/users/${personId}/frameworks/${frameworkId}`)
+			.then(res => dispatch(removePersonFrameworkSuccess(res.data)))
+	}
+}
+
+function removePersonFrameworkSuccess(data) {
+	// console.log(`data from remove person framework action: ${data}`);
+	return {
+		type: REMOVE_PERSON_FRAMEWORK_SUCCESS,
+		payload: data
 	}
 }

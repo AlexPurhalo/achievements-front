@@ -26,10 +26,12 @@ export default class Frameworks extends Component {
 		e.preventDefault();
 
 		this.props.addFramework(this.props.personId, this.state.framework);
+		this.setState({ framework: '' });
 	}
 
-	removeFramework() {
-		console.log('works')
+	removeFramework(frameworkId) {
+		console.log(frameworkId);
+		this.props.removeFramework(this.props.personId, frameworkId);
 	}
 
 	frameworksList() {
@@ -41,7 +43,10 @@ export default class Frameworks extends Component {
 						<li><h4>{framework.framework}</h4></li>
 						{this.props.personId == localStorage.getItem('accountId') &&
 						(<li>
-							<button className="non-styled-btn" type="reset" onClick={this.removeFramework}>
+							<button
+								className="non-styled-btn"
+								type="reset"
+								onClick={e => this.removeFramework(framework.id)}>
 								<img src={RemoveIcon} className="framework-remove-icon" alt="remove-icon"/>
 							</button>
 						</li>)}
@@ -57,6 +62,7 @@ export default class Frameworks extends Component {
 				<form onSubmit={this.addFrameworkSubmit}>
 					<input
 						onChange={this.addFrameworkChange}
+						value={this.state.framework}
 						type="text"
 						placeholder="New Skill"
 						className="edit-input add-framework-input"/>
