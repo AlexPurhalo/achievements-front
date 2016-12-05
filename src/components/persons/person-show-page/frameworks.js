@@ -1,8 +1,10 @@
 // Node modules import
 import React, {Component} from "react";
-import PlusIcon from "../../../../images/complete-mark.png";
+
 
 // Images import
+import PlusIcon from "../../../../images/complete-mark.png";
+import RemoveIcon from "../../../../images/remove-icon.png";
 
 // Shows person's frameworks
 export default class Frameworks extends Component {
@@ -11,6 +13,7 @@ export default class Frameworks extends Component {
 
 		this.addFrameworkChange = this. addFrameworkChange.bind(this);
 		this.addFrameworkSubmit = this.addFrameworkSubmit.bind(this);
+		this.removeFramework = this.removeFramework.bind(this);
 
 		this.state = { framework: '' }
 	}
@@ -25,11 +28,24 @@ export default class Frameworks extends Component {
 		this.props.addFramework(this.props.personId, this.state.framework);
 	}
 
+	removeFramework() {
+		console.log('works')
+	}
+
 	frameworksList() {
 		return (
 			this.props.frameworks.map(framework =>
 				<li className="framework" key={framework.id}>
-					# {framework.framework}
+					<ul>
+						<li>#</li>
+						<li><h4>{framework.framework}</h4></li>
+						{this.props.personId == localStorage.getItem('accountId') &&
+						(<li>
+							<button className="non-styled-btn" type="reset" onClick={this.removeFramework}>
+								<img src={RemoveIcon} className="framework-remove-icon" alt="remove-icon"/>
+							</button>
+						</li>)}
+					</ul>
 				</li>
 			)
 		);

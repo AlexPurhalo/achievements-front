@@ -5,14 +5,33 @@
 			display: inline-block;
 			margin: 0 1rem;
 			font-weight: 700;
-			font-size: 1.16rem;
-			.add-framework-input {
-				max-width: 114px;
+			ul {
+				li {
+					margin: 0 0;
+					h4 {
+						margin: 0 0 0 0.3rem;
+						font-weight: 700;
+						font-size: 1.2rem;
+
+					}
+					button {
+						margin: 0 -0.3rem;
+						.framework-remove-icon {
+							width: 13px;
+							height: 13px;
+							margin: 0 0.5rem 0.3rem;
+						}
+					}
+				}
 			}
-			.add-framework-img {
-				width: 28px;
-				height: 28px;
-			}
+
+		}
+		.add-framework-input {
+			max-width: 114px;
+		}
+		.add-framework-img {
+			width: 28px;
+			height: 28px;
 		}
 	}
 }
