@@ -10,21 +10,14 @@ export default class PersonInfo extends Component {
 	render() {
 		return (
 			<div className="col-md-6 person-info-section">
-				<h2 className="name">Alexander Purkhalo</h2>
-				<p className="years">20 years</p>
+				<h2 className="name">{this.props.name ? this.props.name : 'Who is this pokemon?'}</h2>
+				<p className="years">{this.props.age && `${this.props.age} years`}</p>
 				<ul className="inline-list">
 					<li className="inline-block location">
-						<ul className="inline-list">
-							<li className="inline-block">
-								<p>Ukraine</p>
-							</li>
-							<li className="inline-block">
-								<p>,</p>
-							</li>
-						</ul>
+						{this.props.country ? `${this.props.country}, ` : 'Country'}
 					</li>
 					<li className="inline-block location">
-						<p>Kiev</p>
+						{this.props.city ? this.props.city : 'City'}
 					</li>
 				</ul>
 				<ul className="inline-list email-section">
@@ -32,17 +25,23 @@ export default class PersonInfo extends Component {
 						<img src={EmailIcon} alt="email" className="email-icon"/>
 					</li>
 					<li className="inline-block">
-						<h3 className="email">alexpurhalo@gmail.com</h3>
+						<h3 className="email">
+							{this.props.email ? this.props.email : 'some_email@mail.com'}
+						</h3>
 					</li>
 				</ul>
-				<ul className="inline-list">
-					<li className="inline-block">
-						<p className="phone">+38 095 220 78 66</p>
-					</li>
-					<li className="inline-block">
-						<img src={PhoneIcon} alt="phone" className="phone-icon"/>
-					</li>
-				</ul>
+				{this.props.phone && (
+					<ul className="inline-list">
+						<li className="inline-block">
+							<p className="phone">
+								{this.props.phone}
+							</p>
+						</li>
+						<li className="inline-block">
+							<img src={PhoneIcon} alt="phone" className="phone-icon"/>
+						</li>
+					</ul>
+				)}
 			</div>
 		);
 	}
