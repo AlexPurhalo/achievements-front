@@ -14,9 +14,9 @@ import {
 // Show page's components import
 import Profile from './person-show-page/profile';
 import Frameworks from './person-show-page/frameworks';
+import Avatar from './person-show-page/avatar';
+import PersonInfo from './person-show-page/person-info';
 
-// import Avatar from './person-show-page/avatar';
-// import PersonInfo from './person-show-page/person-info';
 // import Achievements from './person-show-page/achievements';
 // import Works from './person-show-page/works';
 // import ContactInfo from './person-show-page/contact-info';
@@ -42,6 +42,10 @@ class ShowPerson extends Component {
 					profile={this.props.person.profile}
 					skills={this.props.person.skills}
 					updateProfile={this.props.updatePerson} />
+				<div className="row">
+						<Avatar />
+						<PersonInfo />
+				</div>
 			</div>
 		);
 	}

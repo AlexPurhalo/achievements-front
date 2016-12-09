@@ -1,3 +1,15 @@
 .avatar-section {
 	color: red;
+
+	.thumbnail {
+		text-align: center;
+
+	}
+
+	.thumbnail .avatar {
+		object-fit: cover;
+		width: 360px;
+		height: 360px;
+		border-radius: 100%;
+	}
 }
