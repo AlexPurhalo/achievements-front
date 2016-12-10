@@ -10,22 +10,42 @@
 		width: 360px;
 		height: 360px;
 		border-radius: 100%;
+		@media (max-width: 600px) {
+			width: 200px;
+			height: 200px;
+		}
 	}
 
 	.empty-avatar {
 		object-fit: cover;
 		width: 360px;
 		height: 360px;
+		@media (max-width: 600px) {
+			width: 200px;
+			height: 200px;
+		}
 	}
 	form {
+		@media (max-width: 340px) {
+			width: 0;
+			height: 0;
+		}
 		.on-select-avatar {
 			padding: 0 0;
 			margin: 0 0;
 			font-size: 1.5rem;
+
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
 			.edit-avatar-icon {
 				width: 34px;
 				height: 34px;
 				margin: 0 0.8rem 0;
+				@media (max-width: 600px) {
+					width: 0;
+					height: 0;
+				}
 			}
 		}
 		.complete-mark {

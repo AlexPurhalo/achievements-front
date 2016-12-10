@@ -2,15 +2,31 @@
 	text-align: center;
 	padding: 2.2rem 0 0;
 
-	ul, .edit-name-section {
-		h2, .name{
+	ul.edit-name-section {
+
+		form.update-name-form {
+			input.update-name-input {
+				max-width: 260px;
+			}
+
+			img.update-name-icon {
+				width: 30px;
+				height: 30px;
+				margin: 0 0 1rem;
+			}
+		}
+
+		h2.name{
 			text-align: center;
 			font-size: 2.45rem;
 			font-weight: 700;
 			letter-spacing: 2px;
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
 		}
 
-		.edit-name-icon {
+		img.edit-name-icon {
 			cursor: pointer;
 			width: 33px;
 			height: 33px;
@@ -18,44 +34,75 @@
 		}
 	}
 
-	ul, .edit-email-section {
-		margin: 3rem 0 0;
+	ul.edit-years-section {
+		form.update-years-form {
+			.update-age-input {
+				width: 100px;
+			}
 
-		.email {
-			font-size: 1.5rem;
+			img.update-age-icon {
+				width: 30px;
+				height: 30px;
+				margin: 0 0 1rem;
+			}
 		}
 
-		.email-icon {
-			height: 32px;
-			width: 32px;
-			margin: 0 1rem 1rem;
-		}
 
-		.edit-email-icon {
+
+		img.edit-years-icon {
 			cursor: pointer;
 			width: 32px;
 			height: 32px;
 			margin: 0 0.4rem 1rem;
 		}
-	}
-	ul, .edit-years-section {
-		.years {
-			font-size: 1.7rem;
+
+		p.years {
+			font-size: 1.4rem;
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
 		}
 
-		.edit-years-icon {
-			cursor: pointer;
-			width: 32px;
-			height: 32px;
-			margin: 0 0.4rem 1rem;
-		}
 	}
 
-
-	ul, .location {
+	ul.location {
 		margin: 0 0.2rem;
-		font-size: 1.8rem;
+		letter-spacing: 2px;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+		}
 
+		form.update-country-form {
+			input.update-country-input {
+				max-width: 100px;
+			}
+
+			img.update-country-icon {
+				width: 28px;
+				height: 28px;
+				margin: 0 0 1rem;
+			}
+		}
+
+		form.update-city-form {
+			input.update-city-input {
+				max-width: 100px;
+			}
+
+			img.update-city-icon {
+				width: 28px;
+				height: 28px;
+				margin: 0 0 1rem;
+			}
+		}
+		h5.country {
+			margin: 0 0.4rem;
+			font-size: 1.4rem;
+		}
+
+		h4.person-city {
+			font-size: 1.4rem;
+		}
 		.edit-country-icon {
 			cursor: pointer;
 			width: 32px;
@@ -71,14 +118,65 @@
 		}
 	}
 
+	ul.edit-email-section {
+		margin: 3rem 0 0;
+		@media (max-width: 600px) {
+			margin: 1rem 0 0;
+		}
 
-	ul, .edit-phone-section {
+		form.update-email-form {
+			input.update-email-input {
+			}
+
+			img.update-email-icon {
+				width: 30px;
+				height: 30px;
+				margin: 0 0 1rem;
+			}
+		}
+		.email {
+			font-size: 1.5rem;
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
+		}
+
+		.email-icon {
+			height: 32px;
+			width: 32px;
+			margin: 0 1rem 1rem;
+		}
+
+		.edit-email-icon {
+			cursor: pointer;
+			width: 32px;
+			height: 32px;
+			margin: 0 0.4rem 1rem;
+		}
+	}
+
+	ul.edit-phone-section {
 		.phone {
 			font-size: 1.4rem;
 			letter-spacing: 2px;
+			@media (max-width: 600px) {
+				font-size: 0.9rem;
+			}
 		}
 
-		.phone-icon {
+		form.update-phone-form {
+			input.update-phone-input {
+
+			}
+
+			img.update-phone-icon {
+				width: 30px;
+				height: 30px;
+				margin: 0 0 1rem;
+			}
+		}
+
+		img.phone-icon {
 			width: 25px;
 			height: 25px;
 			margin: 0 0 0.5rem 0.8rem;
@@ -92,4 +190,5 @@
 		}
 	}
 }
+
 
