@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions import
 import { fetchPerson } from '../../actions/persons';
-import { updatePerson } from '../../actions/persons';
+import { updatePerson, updatePersonAvatar } from '../../actions/persons';
 import {
 	fetchPersonFrameworks,
 	addPersonFramework,
@@ -43,7 +43,10 @@ class ShowPerson extends Component {
 					skills={this.props.person.skills}
 					updateProfile={this.props.updatePerson} />
 				<div className="row">
-						<Avatar avatar={this.props.person.avatar}/>
+						<Avatar
+							id={this.props.person.id}
+							avatar={this.props.person.avatar}
+							updateAvatar={this.props.updatePersonAvatar} />
 						<PersonInfo
 							name={this.props.person.name}
 							age={this.props.person.age}
@@ -66,5 +69,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-	fetchPerson, updatePerson, fetchPersonFrameworks, addPersonFramework, removePersonFramework
+	fetchPerson, updatePerson, fetchPersonFrameworks, addPersonFramework, removePersonFramework, updatePersonAvatar
 })(ShowPerson);

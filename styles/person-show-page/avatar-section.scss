@@ -1,6 +1,5 @@
 .avatar-section {
-	color: red;
-
+	text-align: center;
 	.thumbnail {
 		text-align: center;
 
@@ -17,5 +16,25 @@
 		object-fit: cover;
 		width: 360px;
 		height: 360px;
+	}
+	form {
+		.on-select-avatar {
+			padding: 0 0;
+			margin: 0 0;
+			font-size: 1.5rem;
+			.edit-avatar-icon {
+				width: 34px;
+				height: 34px;
+				margin: 0 0.8rem 0;
+			}
+		}
+		.complete-mark {
+			width: 30px;
+			height: 30px;
+		}
+		.cancel-icon {
+			width: 25px;
+			height: 25px;
+		}
 	}
 }

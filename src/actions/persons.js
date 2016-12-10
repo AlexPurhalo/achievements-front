@@ -1,6 +1,8 @@
 // Node modules import
 import axios from 'axios';
 import bcrypt from 'bcrypt-nodejs';
+import FormData from 'form-data'
+
 
 // API service address
 const ROOT_URL = 'http://localhost:5000';
@@ -115,5 +117,24 @@ function updatePersonFailure(errors) {
 	return {
 		type: UPDATE_PERSON_FAILURE,
 		payload: errors
+	}
+}
+
+
+// // Updates person's avatar
+export function updatePersonAvatar(id, file) {
+	let data = new FormData();
+	const headers = {
+		headers: {
+			'X-Access-Token': localStorage.getItem('token'),
+			'Content-Type': undefined
+		}
+	};
+	data.append('avatar', file);
+
+	return function(dispatch) {
+		return axios.put(`${ROOT_URL}/users/${id}`, data, headers )
+			.then(res => dispatch(updatePersonSuccess(res.data)))
+			.catch(req => dispatch(updatePersonFailure(req.response.data.errors)));
 	}
 }
