@@ -14,18 +14,41 @@ export default class PersonInfo extends Component {
 	render() {
 		return (
 			<div className="col-md-6 person-info-section">
-				<NameSection name={this.props.name} id={this.props.id} />
-				<AgeSection age={this.props.age} id={this.props.id} />
+				<NameSection
+					name={this.props.name}
+					id={this.props.id}
+					updateName={this.props.updatePerson} />
+
+				<AgeSection
+					age={this.props.age}
+					id={this.props.id}
+					updateAge={this.props.updatePerson} />
+
 				<ul className="inline-list">
 					<li className="inline-block">
-						<CountrySection country={this.props.country} id={this.props.id}/>
+						<CountrySection
+							country={this.props.country}
+							id={this.props.id}
+							updateCountry={this.props.updatePerson} />
 					</li>
+
 					<li className="inline-block">
-						<CitySection city={this.props.city} id={this.props.id}/>
+						<CitySection
+							city={this.props.city}
+							id={this.props.id}
+							updateCity={this.props.updatePerson} />
 					</li>
 				</ul>
-				<EmailSection email={this.props.email} id={this.props.id} />
-				<PhoneSection phone={this.props.phone} id={this.props.id} />
+
+				<EmailSection
+					email={this.props.email}
+					id={this.props.id}
+					updateEmail={this.props.updatePerson} />
+
+				<PhoneSection
+					phone={this.props.phone}
+					id={this.props.id}
+					updatePhone={this.props.updatePerson} />
 			</div>
 		);
 	}

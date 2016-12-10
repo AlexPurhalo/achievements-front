@@ -54,7 +54,8 @@ class ShowPerson extends Component {
 							email={this.props.person.email}
 							country={this.props.person.country}
 							city={this.props.person.city}
-							phone={this.props.person.phone} />
+							phone={this.props.person.phone}
+							updatePerson={this.props.updatePerson}/>
 				</div>
 			</div>
 		);

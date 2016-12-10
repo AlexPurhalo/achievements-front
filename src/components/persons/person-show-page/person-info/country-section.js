@@ -10,13 +10,30 @@ export default class CountrySection extends Component {
 	constructor() {
 		super();
 
-		this.state = { onEditCountry: false };
+		this.state = { onEditCountry: false, country: null };
 
 		this.editCountryClick = this.editCountryClick.bind(this);
+		this.handleChangeCountry = this.handleChangeCountry.bind(this);
+		this.updateCountry = this.updateCountry.bind(this);
 	}
 
 	accountHolder() {
 		return this.props.id == localStorage.getItem('accountId') && true
+	}
+
+	editCountryClick() { this.setState({ onEditCountry: !this.state.onEditCountry })}
+
+	handleChangeCountry(e) {
+		this.setState({ country: e.target.value });
+	}
+
+	updateCountry(e) {
+		e.preventDefault();
+
+		if (this.state.country) {
+			this.props.updateCountry(this.props.id, { country: this.state.country });
+			this.setState({ onEditCountry: !this.state.onEditCountry });
+		}
 	}
 
 	country() {
@@ -24,12 +41,16 @@ export default class CountrySection extends Component {
 		return this.props.country && `${this.props.country}, `
 	}
 
-	editCountryClick() { this.setState({ onEditCountry: !this.state.onEditCountry })}
-
 	countryForm() {
 		return (
-			<form className="update-country-form">
-				<input autoFocus type="text" className="edit-input update-country-input"/>
+			<form className="update-country-form" onSubmit={this.updateCountry}>
+				<input
+					autoFocus
+					type="text"
+					className="edit-input update-country-input"
+					onChange={this.handleChangeCountry}
+					value={this.state.country}
+					placeholder={this.props.country} />
 				<button className="non-styled-btn" type="submit">
 					<img src={UpdateIcon} alt="update country" className="update-country-icon"/>
 				</button>

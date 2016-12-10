@@ -11,13 +11,30 @@ export default class EmailSection extends Component {
 	constructor() {
 		super();
 
-		this.state = { onEditEmail: false };
+		this.state = { onEditEmail: false, email: null };
 
 		this.editEmailClick = this.editEmailClick.bind(this);
+		this.handleChangeEmail = this.handleChangeEmail.bind(this);
+		this.updateEmail = this.updateEmail.bind(this);
 	}
 
 	accountHolder() {
 		return this.props.id == localStorage.getItem('accountId') && true
+	}
+
+	editEmailClick() { this.setState({ onEditEmail: !this.state.onEditEmail })}
+
+	handleChangeEmail(e) {
+		this.setState({ email: e.target.value })
+	}
+
+	updateEmail(e) {
+		e.preventDefault();
+
+		if (this.state.email) {
+			this.props.updateEmail(this.props.id, { email: this.state.email });
+			this.setState({ onEditEmail: !this.state.onEditEmail });
+		}
 	}
 
 	email() {
@@ -27,16 +44,19 @@ export default class EmailSection extends Component {
 
 	emailForm() {
 		return (
-			<form className="update-email-form">
-				<input type="text" className="edit-input update-email-input"/>
+			<form className="update-email-form" onSubmit={this.updateEmail}>
+				<input
+					type="text"
+					className="edit-input update-email-input"
+					onChange={this.handleChangeEmail}
+					value={this.state.email}
+					placeholder={this.props.email} />
 				<button className="non-styled-btn" type="submit">
 					<img src={UpdateIcon} alt="update email" className="update-email-icon"/>
 				</button>
 			</form>
 		);
 	}
-
-	editEmailClick() { this.setState({ onEditEmail: !this.state.onEditEmail })}
 
 	render() {
 		return (

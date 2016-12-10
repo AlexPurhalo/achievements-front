@@ -11,9 +11,24 @@ export default class PhoneSection extends Component {
 	constructor() {
 		super();
 
-		this.state = { onEditPhone: false };
+		this.state = { onEditPhone: false, phone: null };
 
 		this.editPhoneClick = this.editPhoneClick.bind(this);
+		this.handleChangePhone = this.handleChangePhone.bind(this);
+		this.updatePhone = this.updatePhone.bind(this);
+	}
+
+	editPhoneClick() { this.setState({ onEditPhone: !this.state.onEditPhone })}
+
+	handleChangePhone(e) { this.setState({ phone: e.target.value })}
+
+	updatePhone(e) {
+		e.preventDefault();
+
+		if (this.state.phone) {
+			this.props.updatePhone(this.props.id, { phone: this.state.phone });
+			this.setState({ onEditPhone: !this.state.onEditPhone })
+		}
 	}
 
 	accountHolder() {
@@ -25,13 +40,16 @@ export default class PhoneSection extends Component {
 		return this.props.phone && this.props.phone
 	}
 
-	editPhoneClick() { this.setState({ onEditPhone: !this.state.onEditPhone })}
-
 	phoneForm() {
 		return (
-			<form className="update-phone-form">
-				<input type="text" className="edit-input update-phone-input"/>
-				<button className="non-styled-btn">
+			<form className="update-phone-form" onSubmit={this.updatePhone}>
+				<input
+					type="text"
+					className="edit-input update-phone-input"
+					onChange={this.handleChangePhone}
+					value={this.state.phone}
+					placeholder={this.props.phone} />
+				<button className="non-styled-btn" type="submit">
 					<img src={UpdateIcon} alt="update phone" className="update-phone-icon"/>
 				</button>
 			</form>

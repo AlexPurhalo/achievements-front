@@ -10,9 +10,30 @@ export default class AgeSection extends Component {
 	constructor() {
 		super();
 
-		this.state = { onEditAge: false };
+		this.state = { onEditAge: false, age: null };
 
 		this.editAgeClick = this.editAgeClick.bind(this);
+		this.handleChangeAge = this.handleChangeAge.bind(this);
+		this.updateAge = this.updateAge.bind(this);
+	}
+
+	accountHolder() {
+		return this.props.id == localStorage.getItem('accountId') && true
+	}
+
+	editAgeClick() { this.setState({ onEditAge: !this.state.onEditAge })}
+
+	handleChangeAge(e) {
+		this.setState({ age: e.target.value })
+	}
+
+	updateAge(e) {
+		e.preventDefault();
+
+		if (this.state.age) {
+			this.props.updateAge(this.props.id, { age: this.state.age });
+			this.setState({ onEditAge: !this.state.onEditAge });
+		}
 	}
 
 	age() {
@@ -20,16 +41,16 @@ export default class AgeSection extends Component {
 		return this.props.age && `${this.props.age} years`;
 	}
 
-	editAgeClick() { this.setState({ onEditAge: !this.state.onEditAge })}
-
-	accountHolder() {
-		return this.props.id == localStorage.getItem('accountId') && true
-	}
-
 	ageForm() {
 		return (
-			<form className="update-years-form">
-				<input autoFocus type="text" className="edit-input update-age-input"/>
+			<form className="update-years-form" onSubmit={this.updateAge}>
+				<input
+					autoFocus
+					type="text"
+					className="edit-input update-age-input"
+					onChange={this.handleChangeAge}
+					value={this.state.age}
+					placeholder={this.props.age} />
 				<button className="non-styled-btn" type="submit">
 					<img src={UpdateIcon} alt="update age" className="update-age-icon"/>
 				</button>

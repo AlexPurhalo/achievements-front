@@ -10,9 +10,11 @@ export default class CitySection extends Component {
 	constructor() {
 		super();
 
-		this.state = { onEditCity: false };
+		this.state = { onEditCity: false, city: null };
 
 		this.editCityClick = this.editCityClick.bind(this);
+		this.handleChangeCity = this.handleChangeCity.bind(this);
+		this.updateCity = this.updateCity.bind(this);
 	}
 
 	accountHolder() {
@@ -21,6 +23,19 @@ export default class CitySection extends Component {
 
 	editCityClick() { this.setState({ onEditCity: !this.state.onEditCity})}
 
+	handleChangeCity(e) {
+		this.setState({ city: e.target.value });
+	}
+
+	updateCity(e) {
+		e.preventDefault();
+
+		if (this.state.city) {
+			this.props.updateCity(this.props.id, { city: this.state.city });
+			this.setState({ onEditCity: !this.state.onEditCity });
+		}
+	}
+
 	city() {
 		if (!this.props.city && this.accountHolder()) return 'City?';
 		return this.props.city ? this.props.city : 'Where does it live?'
@@ -28,8 +43,14 @@ export default class CitySection extends Component {
 
 	cityForm() {
 		return (
-			<form className="update-city-form">
-				<input autoFocus type="text" className="edit-input update-city-input"/>
+			<form className="update-city-form" onSubmit={this.updateCity}>
+				<input
+					autoFocus
+					type="text"
+					className="edit-input update-city-input"
+					onChange={this.handleChangeCity}
+					value={this.state.city}
+					placeholder={this.props.city} />
 				<button className="non-styled-btn" type="submit">
 					<img src={UpdateIcon} alt="update city" className="update-city-icon"/>
 				</button>
