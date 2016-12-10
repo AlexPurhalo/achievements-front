@@ -48,6 +48,7 @@ class ShowPerson extends Component {
 							avatar={this.props.person.avatar}
 							updateAvatar={this.props.updatePersonAvatar} />
 						<PersonInfo
+							id={this.props.person.id}
 							name={this.props.person.name}
 							age={this.props.person.age}
 							email={this.props.person.email}
