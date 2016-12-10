@@ -1,0 +1,29 @@
+ul.edit-years-section {
+	form.update-years-form {
+		.update-age-input {
+			width: 100px;
+		}
+
+		img.update-age-icon {
+			width: 30px;
+			height: 30px;
+			margin: 0 0 1rem;
+		}
+	}
+
+
+
+	img.edit-years-icon {
+		cursor: pointer;
+		width: 32px;
+		height: 32px;
+		margin: 0 0.4rem 1rem;
+	}
+
+	p.years {
+		font-size: 1.4rem;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+		}
+	}
+}

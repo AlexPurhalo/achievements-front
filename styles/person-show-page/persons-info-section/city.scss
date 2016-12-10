@@ -1,0 +1,32 @@
+form.update-city-form {
+	input.update-city-input {
+		max-width: 100px;
+	}
+
+	img.update-city-icon {
+		width: 28px;
+		height: 28px;
+		margin: 0 0 1rem;
+	}
+}
+h5.country {
+	margin: 0 0.4rem;
+	font-size: 1.4rem;
+}
+
+h4.person-city {
+	font-size: 1.4rem;
+}
+.edit-country-icon {
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	margin: 0 0.4rem 1rem;
+}
+
+.edit-city-icon {
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	margin: 0 0.4rem 1rem;
+}

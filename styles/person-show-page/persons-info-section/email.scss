@@ -1,0 +1,36 @@
+ul.edit-email-section {
+	margin: 3rem 0 0;
+	@media (max-width: 600px) {
+		margin: 1rem 0 0;
+	}
+
+	form.update-email-form {
+		input.update-email-input {
+		}
+
+		img.update-email-icon {
+			width: 30px;
+			height: 30px;
+			margin: 0 0 1rem;
+		}
+	}
+	.email {
+		font-size: 1.5rem;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+		}
+	}
+
+	.email-icon {
+		height: 32px;
+		width: 32px;
+		margin: 0 1rem 1rem;
+	}
+
+	.edit-email-icon {
+		cursor: pointer;
+		width: 32px;
+		height: 32px;
+		margin: 0 0.4rem 1rem;
+	}
+}
