@@ -5,7 +5,7 @@ import FormData from 'form-data'
 
 
 // API service address
-const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'https://achievements-project.herokuapp.com';
 
 // Actions types import
 import {
@@ -23,7 +23,7 @@ import {
 export function createPerson(username, password) {
 	return function(dispatch) {
 		const hashedPassword = bcrypt.hashSync(password),
-			data = { username: username, enc_password: hashedPassword };
+			data = { username: username, password: hashedPassword };
 
 		return axios.post(`${ROOT_URL}/users`, data)
 			.then(res => dispatch(createPersonSuccess(res)))

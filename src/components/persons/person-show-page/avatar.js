@@ -102,6 +102,7 @@ export default class Avatar extends Component {
 	}
 
 	render() {
+		console.log(this.props.avatar);
 		return (
 			<div className="col-md-6 avatar-section">
 				<div className="thumbnail">

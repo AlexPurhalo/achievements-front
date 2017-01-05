@@ -1,0 +1,10 @@
+.loader {
+	margin: 14rem auto;
+	text-align: center;
+	@media (max-width: 600px) {
+		margin: 10rem auto;
+	}
+	@media (max-width: 400px) {
+		margin: 2.5rem auto;
+	}
+}

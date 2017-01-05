@@ -17,21 +17,24 @@ import Frameworks from './person-show-page/frameworks';
 import Avatar from './person-show-page/avatar';
 import PersonInfo from './person-show-page/person-info';
 
+// Common components import
+import Loader from '../loader';
+
 // import Achievements from './person-show-page/achievements';
 // import Works from './person-show-page/works';
 // import ContactInfo from './person-show-page/contact-info';
 
 // Shows info about person
 class ShowPerson extends Component {
-	componentWillMount() {
-		this.props.fetchPerson(this.props.params.id);
-		this.props.fetchPersonFrameworks(this.props.params.id)
+	// Shows loader
+	renderLoader() {
+		return <div><Loader /></div>;
 	}
 
-	render() {
-		// console.log(`person frameworks from parent component: ${this.props.person_frameworks}`);
+	// Shows person components
+	renderComponents() {
 		return (
-			<div className="person-show-page">
+			<div>
 				<Frameworks
 					frameworks={this.props.person_frameworks}
 					personId={this.props.person.id}
@@ -43,20 +46,34 @@ class ShowPerson extends Component {
 					skills={this.props.person.skills}
 					updateProfile={this.props.updatePerson} />
 				<div className="row">
-						<Avatar
-							id={this.props.person.id}
-							avatar={this.props.person.avatar}
-							updateAvatar={this.props.updatePersonAvatar} />
-						<PersonInfo
-							id={this.props.person.id}
-							name={this.props.person.name}
-							age={this.props.person.age}
-							email={this.props.person.email}
-							country={this.props.person.country}
-							city={this.props.person.city}
-							phone={this.props.person.phone}
-							updatePerson={this.props.updatePerson}/>
+					<Avatar
+						id={this.props.person.id}
+						avatar={this.props.person.avatar}
+						updateAvatar={this.props.updatePersonAvatar} />
+					<PersonInfo
+						id={this.props.person.id}
+						name={this.props.person.name}
+						age={this.props.person.age}
+						email={this.props.person.email}
+						country={this.props.person.country}
+						city={this.props.person.city}
+						phone={this.props.person.phone}
+						updatePerson={this.props.updatePerson}/>
 				</div>
+			</div>
+		);
+	}
+
+	componentWillMount() {
+		this.props.fetchPerson(this.props.params.id);
+		this.props.fetchPersonFrameworks(this.props.params.id)
+	}
+
+	render() {
+		// console.log(`person frameworks from parent component: ${this.props.person_frameworks}`);
+		return (
+			<div className="person-show-page">
+				{this.props.person ? this.renderComponents() : this.renderLoader() }
 			</div>
 		);
 	}

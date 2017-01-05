@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // API service address
-const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'https://achievements-project.herokuapp.com';
 
 // Actions types import
 import {

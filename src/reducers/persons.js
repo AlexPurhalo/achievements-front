@@ -12,7 +12,7 @@ import {
 
 // Initial states for reducers
 const INITIAL_STATE = {
-	single_person: {},
+	single_person: null,
 	all_persons: [],
 	errors: [],
 	users_page_info: { obj: 'go'}

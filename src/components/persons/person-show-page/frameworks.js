@@ -40,7 +40,7 @@ export default class Frameworks extends Component {
 				<li className="framework" key={framework.id}>
 					<ul>
 						<li>#</li>
-						<li><h4>{framework.framework}</h4></li>
+						<li><h4>{framework.name}</h4></li>
 						{this.props.personId == localStorage.getItem('accountId') &&
 						(<li>
 							<button
