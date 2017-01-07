@@ -10,17 +10,23 @@ import {
 	addPersonFramework,
 	removePersonFramework
 } from '../../actions/person-frameworks';
+import {
+	fetchAchievements,
+	addAchievement,
+	updateAchievement,
+	deleteAchievement
+} from '../../actions/achievements';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
 import Frameworks from './person-show-page/frameworks';
 import Avatar from './person-show-page/avatar';
 import PersonInfo from './person-show-page/person-info';
+import Achievements from './person-show-page/achievements';
 
 // Common components import
 import Loader from '../loader';
 
-// import Achievements from './person-show-page/achievements';
 // import Works from './person-show-page/works';
 // import ContactInfo from './person-show-page/contact-info';
 
@@ -58,22 +64,29 @@ class ShowPerson extends Component {
 						country={this.props.person.country}
 						city={this.props.person.city}
 						phone={this.props.person.phone}
-						updatePerson={this.props.updatePerson}/>
+						updatePerson={this.props.updatePerson} />
 				</div>
+				<Achievements
+					achievements={this.props.achievements}
+					personId={this.props.person.id}
+					addAchievement={this.props.addAchievement}
+					updateAchievement={this.props.updateAchievement}
+					removeAchievement={this.props.deleteAchievement} />
 			</div>
 		);
 	}
 
 	componentWillMount() {
 		this.props.fetchPerson(this.props.params.id);
-		this.props.fetchPersonFrameworks(this.props.params.id)
+		this.props.fetchPersonFrameworks(this.props.params.id);
+		this.props.fetchAchievements(this.props.params.id);
 	}
 
 	render() {
 		// console.log(`person frameworks from parent component: ${this.props.person_frameworks}`);
 		return (
 			<div className="person-show-page">
-				{this.props.person ? this.renderComponents() : this.renderLoader() }
+				{this.props.person && this.props.achievements ? this.renderComponents() : this.renderLoader() }
 			</div>
 		);
 	}
@@ -83,10 +96,20 @@ function mapStateToProps(state) {
 	return {
 		person: state.persons.single_person,
 		errors: state.persons.errors,
-		person_frameworks: state.personFrameworks.frameworks
+		person_frameworks: state.personFrameworks.frameworks,
+		achievements: state.personAchievements.achievements
 	}
 }
 
 export default connect(mapStateToProps, {
-	fetchPerson, updatePerson, fetchPersonFrameworks, addPersonFramework, removePersonFramework, updatePersonAvatar
+	fetchPerson,
+	updatePerson,
+	fetchPersonFrameworks,
+	addPersonFramework,
+	removePersonFramework,
+	updatePersonAvatar,
+	fetchAchievements,
+	addAchievement,
+	updateAchievement,
+	deleteAchievement
 })(ShowPerson);

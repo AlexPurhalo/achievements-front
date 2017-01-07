@@ -5,7 +5,7 @@ import FormData from 'form-data'
 
 
 // API service address
-const ROOT_URL = 'https://achievements-project.herokuapp.com';
+import { ROOT_URL } from '../constants/index';
 
 // Actions types import
 import {
