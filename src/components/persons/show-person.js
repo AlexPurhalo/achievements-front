@@ -23,11 +23,12 @@ import Frameworks from './person-show-page/frameworks';
 import Avatar from './person-show-page/avatar';
 import PersonInfo from './person-show-page/person-info';
 import Achievements from './person-show-page/achievements';
+import Works from './person-show-page/works';
 
 // Common components import
 import Loader from '../loader';
 
-// import Works from './person-show-page/works';
+
 // import ContactInfo from './person-show-page/contact-info';
 
 // Shows info about person
@@ -72,6 +73,7 @@ class ShowPerson extends Component {
 					addAchievement={this.props.addAchievement}
 					updateAchievement={this.props.updateAchievement}
 					removeAchievement={this.props.deleteAchievement} />
+				<Works />
 			</div>
 		);
 	}
