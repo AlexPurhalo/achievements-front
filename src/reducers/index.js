@@ -7,6 +7,7 @@ import flashMessagesReducer from './flash-messages';
 import sessionsReducer from './sessions';
 import personFrameworksReducer from './person-frameworks';
 import personAchievementsReducer from './achievements';
+import personWorksReducer from './works';
 
 // State holding in combine reducers
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
 	flashMessages: flashMessagesReducer,
 	sessions: sessionsReducer,
 	personFrameworks: personFrameworksReducer,
-	personAchievements: personAchievementsReducer
+	personAchievements: personAchievementsReducer,
+	personWorks: personWorksReducer
 });
 
 export default rootReducer;

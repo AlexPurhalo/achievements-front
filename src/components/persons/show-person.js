@@ -16,6 +16,7 @@ import {
 	updateAchievement,
 	deleteAchievement
 } from '../../actions/achievements';
+import { fetchWorks } from '../../actions/works';
 
 // Show page's components import
 import Profile from './person-show-page/profile';
@@ -73,7 +74,8 @@ class ShowPerson extends Component {
 					addAchievement={this.props.addAchievement}
 					updateAchievement={this.props.updateAchievement}
 					removeAchievement={this.props.deleteAchievement} />
-				<Works />
+				<Works
+					works={this.props.works} />
 			</div>
 		);
 	}
@@ -82,13 +84,16 @@ class ShowPerson extends Component {
 		this.props.fetchPerson(this.props.params.id);
 		this.props.fetchPersonFrameworks(this.props.params.id);
 		this.props.fetchAchievements(this.props.params.id);
+		this.props.fetchWorks(this.props.params.id);
 	}
 
 	render() {
 		// console.log(`person frameworks from parent component: ${this.props.person_frameworks}`);
 		return (
 			<div className="person-show-page">
-				{this.props.person && this.props.achievements ? this.renderComponents() : this.renderLoader() }
+				{this.props.person && this.props.achievements && this.props.works
+					? this.renderComponents()
+					: this.renderLoader() }
 			</div>
 		);
 	}
@@ -99,7 +104,8 @@ function mapStateToProps(state) {
 		person: state.persons.single_person,
 		errors: state.persons.errors,
 		person_frameworks: state.personFrameworks.frameworks,
-		achievements: state.personAchievements.achievements
+		achievements: state.personAchievements.achievements,
+		works: state.personWorks.works
 	}
 }
 
@@ -113,5 +119,6 @@ export default connect(mapStateToProps, {
 	fetchAchievements,
 	addAchievement,
 	updateAchievement,
-	deleteAchievement
+	deleteAchievement,
+	fetchWorks
 })(ShowPerson);

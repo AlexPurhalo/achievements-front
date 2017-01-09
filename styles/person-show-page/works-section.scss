@@ -6,6 +6,9 @@
 		font-size: 2.7rem;
 		font-weight: 700;
 		letter-spacing: 3px;
+		@media (max-width: 600px) {
+			font-size: 1.9rem;
+		}
 	}
 
 	.works-list {
@@ -17,9 +20,24 @@
 			display: list-item;
 			margin: 2rem 0;
 
-			.thumbnail {
+			.thumbnail-cover {
+				position: relative;
 				width: 312px;
 				height: 195px;
+				overflow: hidden;
+
+				img {
+					position: absolute;
+					left: 0;
+					top: 14%;
+					height: 100%;
+					width: auto;
+				}
+
+				img.thumbnail {
+					width: 100%;
+					height: auto;
+				}
 			}
 
 			.pagination-section {
@@ -88,6 +106,14 @@
 					.technology {
 						margin: -1px 0.35rem 0 0.35rem;
 						font-weight: 400;
+						a.more-link {
+							color: #9dcff3;
+							text-decoration: none;
+							&:hover {
+								color: #f76363;
+							}
+
+						}
 					}
 				}
 				.single-work-additional-info-date {

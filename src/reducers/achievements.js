@@ -15,7 +15,6 @@ export default (state = INITIAL_STATE, action) => {
 		case FETCH_ACHIEVEMENTS_SUCCESS:
 			return { ...state, achievements: action.payload };
 		case ADD_ACHIEVEMENT_SUCCESS:
-			console.log(action.payload)
 			return { ...state, achievements: action.payload };
 		case UPDATE_ACHIEVEMENT_SUCCESS:
 			return { ...state, achievements: action.payload };
